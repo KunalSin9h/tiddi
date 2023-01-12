@@ -3,6 +3,8 @@
 ```py
 Tiddy
 ```
-
-</div>
+```Ocaml
 Tiddy is self hosted image server written in go
+```
+</div>
+
