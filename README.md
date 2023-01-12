@@ -4,7 +4,7 @@
 ⌘ Tiddy
 ```
 ```Ocaml
-Tiddy is self hosted image server written in go
+Tiddy is self hosted image server written in Go
 ```
 </div>
 
