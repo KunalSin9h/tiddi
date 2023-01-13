@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/znip-in/tiddi/src/api"
-	_ "github.com/znip-in/tiddi/src/prechecks"
+	_ "github.com/znip-in/tiddi/src/db"
 )
 
 var DOMAIN = os.Getenv("DOMAIN")
@@ -19,11 +19,13 @@ func init() {
 	if DOMAIN == "" {
 		log.Println("Using default domain http://localhost")
 		DOMAIN = "http://localhost"
+		os.Setenv("DOMAIN", DOMAIN)
 	}
 
 	if PORT == "" {
 		log.Println("Using default port :5656")
 		PORT = "5656"
+		os.Setenv("PORT", PORT)
 	}
 
 }
@@ -45,6 +47,8 @@ func main() {
 
 	/*
 		Endpoint: POST https://your-domain.com/upload-image
+		Create a non blocking channel to handle the request
+
 	*/
 	http.HandleFunc("/upload-image/", api.UploadImage)
 

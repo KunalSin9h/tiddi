@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/znip-in/tiddi/src/db"
 )
 
 /*
@@ -14,37 +13,20 @@ Pre Checks are the checks which will check for the existence of
 some critical parts of program like db
 */
 
-func init() {
+func RUN_PRECHECKS() {
 	log.Println("[PRE CHECK] Running Pre Checks...")
 
-	/*
-		Checking if database exists
-		Database path should be given at environment variable
-		if not given then the default choice is ./database/dev.db
-	*/
-	DB := os.Getenv("DB")
-	if DB == "" {
-		log.Println("[PRE CHECK] Using default Database (./database/dev.db) ")
-		DB = "./database/dev.db"
-	}
-
 	log.Println("[PRE CHECK] Checking if Database exists in ./database...")
-	if _, err := os.Stat(DB); err != nil {
+	if _, err := os.Stat(os.Getenv("DB")); err != nil {
 		log.Fatal("[PRE CHECK] Database does not exist, make sure you have a db file in ./database")
 	} else {
 		log.Println("[PRE CHECK] Database exist")
 	}
 
-	// Check if the table has required table
+	// Check if the db has required table
 	log.Println("[PRE CHECK] Checking if Database Table (images) exists...")
 
-	db, err := sql.Open("sqlite3", DB)
-
-	if err != nil {
-		log.Fatalf("[PRE CHECK] %v", err.Error())
-	}
-
-	table, err_table := db.Query("SELECT name FROM sqlite_master WHERE type='table' AND name='images'")
+	table, err_table := db.DATABASE.Query("SELECT name FROM sqlite_master WHERE type='table' AND name='images'")
 
 	if err_table != nil {
 		log.Fatalf("[PRE CHECK] %v ", err_table.Error())
@@ -58,9 +40,9 @@ func init() {
 
 	// check if the table has specific columns
 	log.Println("[PRE CHECK] Checking if Images table has all the required columns...")
-	checkColumnExist("id", db)
-	checkColumnExist("title", db)
-	checkColumnExist("blob", db)
+	checkColumnExist("id", db.DATABASE)
+	checkColumnExist("title", db.DATABASE)
+	checkColumnExist("image", db.DATABASE)
 	log.Println("[PRE CHECK] Images table has all the required columns")
 
 	log.Println("[PRE CHECK] Passed all checks")
