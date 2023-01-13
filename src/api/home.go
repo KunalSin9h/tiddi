@@ -9,11 +9,6 @@ import (
 	"github.com/znip-in/tiddi/src/db"
 )
 
-type GetImageResponse struct {
-	title string
-	image []byte
-}
-
 /*
 Home
 Endpoint: https://your-domain.com/
