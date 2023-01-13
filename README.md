@@ -1,7 +1,7 @@
 <div align="center">
 
 ```py
-⌘Tiddy⌘
+⌘Tiddi⌘
 ```
 ```Ocaml
 Tiddy is self hosted image server written in Go
