@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: antiquewhite;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .form-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .link {
+            width: 100%;
+            max-width: 600px;
+        }
+        a {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="form">
+            <input type="file" id="file" accept="image/*" name="filename ">
+            <input type="submit" id="submit" class="btn">
+        </form>
+        <div class="link">
+        </div>
+    </div>
+    <script>
+
+        const submit = document.getElementById("submit")
+        const file = document.getElementById("file")
+        const linkBox = document.querySelector('.link')
+
+        function showBox(color, colorLight, inner){
+            linkBox.style.padding = '5px'
+            linkBox.style.marginTop = '15px'
+            linkBox.style.borderRadius = '10px'
+            linkBox.style.border = `1px solid ${color}`
+            linkBox.style.backgroundColor = colorLight
+            linkBox.innerHTML = inner
+        }
+
+
+        async function postData(data) {
+            // Use Go template to provide url
+            const resp = await fetch("http://localhost:5656/upload-image/", {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:  JSON.stringify(data)
+            })
+            return resp.json()
+        }
+
+        submit.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            showBox("black", "#d3d3d3", "<p>Getting URL...</p>")
+
+            const reader = new FileReader()
+
+            reader.readAsArrayBuffer(file.files[0])
+
+            reader.onload = function() {
+                const title = file.files[0].name
+                const uint8array = new Uint8Array(reader.result);
+                const bytes = Array.from(uint8array)
+
+                postData({
+                    title,
+                    data: bytes
+                }).then((data) => {
+                    showBox("green", "#DAF7A6", `<p><strong>URL</strong>:  <a href="${data.url}" target=_black>${data.url}</a>`)
+                }).catch(() => {
+                    showBox("red", "#FFCCCB", "<p>Something went wrong, try again!</p>")
+                })
+            };
+
+            reader.onerror = function() {
+                showBox("red", "#FFCCCB", "<p>Something went wrong, try again!</p>")
+            };
+        })
+
+    </script>
+</body>
+</html>

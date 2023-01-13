@@ -11,21 +11,21 @@ import (
 	_ "github.com/znip-in/tiddi/src/db"
 )
 
-var DOMAIN = os.Getenv("DOMAIN")
+var HOST = os.Getenv("HOST")
 var PORT = os.Getenv("PORT")
 
 func init() {
 
-	if DOMAIN == "" {
-		log.Println("Using default domain http://localhost")
-		DOMAIN = "http://localhost"
-		os.Setenv("DOMAIN", DOMAIN)
-	}
-
 	if PORT == "" {
-		log.Println("Using default port :5656")
+		log.Println("[MAIN] Using default port (5656)")
 		PORT = "5656"
 		os.Setenv("PORT", PORT)
+	}
+
+	if HOST == "" {
+		log.Printf("[MAIN] Using default host (http://localhost:%s)", PORT)
+		HOST = "http://localhost:" + PORT
+		os.Setenv("HOST", HOST)
 	}
 
 }
@@ -44,9 +44,14 @@ func main() {
 		Endpoint: GET https://your-domain.com/
 	*/
 	http.HandleFunc("/", api.Home)
+	/*
+		Endpoint: POST https://your-domain.com/get-image/
+		Get the full image, title and other details .
+	*/
+	http.HandleFunc("/get-image/", api.GetImage)
 
 	/*
-		Endpoint: POST https://your-domain.com/upload-image
+		Endpoint: POST https://your-domain.com/upload-image/
 		Create a non blocking channel to handle the request
 
 	*/
@@ -55,6 +60,6 @@ func main() {
 	/*
 		Start The Server
 	*/
-	log.Printf("Started server at %s:%s", DOMAIN, PORT)
+	log.Printf("Started server at port %s", PORT)
 	SERVER.ListenAndServe()
 }

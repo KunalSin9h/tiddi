@@ -45,7 +45,7 @@ func StoreImage(uiid, title string, imageData []byte) error {
 	return nil
 }
 
-func GetImage(uiid string) ([]byte, error) {
+func GetImageBytes(uiid string) ([]byte, error) {
 	var image []byte
 	err := DATABASE.QueryRow("SELECT image FROM images WHERE id = ?", uiid).Scan(&image)
 
@@ -54,5 +54,18 @@ func GetImage(uiid string) ([]byte, error) {
 	}
 
 	return image, nil
+
+}
+
+func GetImageDetails(uiid string) (string, []byte, error) {
+	var title string
+	var image []byte
+	err := DATABASE.QueryRow("SELECT title, image FROM images WHERE id = ?", uiid).Scan(&title, &image)
+
+	if err != nil {
+		return "", nil, errors.New("could not get image details from db")
+	}
+
+	return title, image, nil
 
 }
