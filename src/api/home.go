@@ -1,6 +1,9 @@
 package api
 
-import "net/http"
+import (
+	"net/http"
+	"time"
+)
 
 /*
 Home
@@ -15,4 +18,5 @@ Renders the sample client
 */
 func Home(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello"))
+	time.Sleep(time.Second * 5)
 }

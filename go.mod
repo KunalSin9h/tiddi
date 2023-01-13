@@ -1,4 +1,4 @@
-module github.com/znip-in/tiddy
+module github.com/znip-in/tiddi
 
 go 1.19
 

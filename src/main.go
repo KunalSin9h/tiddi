@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/znip-in/tiddy/src/api"
-	_ "github.com/znip-in/tiddy/src/prechecks"
+	"github.com/znip-in/tiddi/src/api"
+	_ "github.com/znip-in/tiddi/src/prechecks"
 )
 
 var DOMAIN = os.Getenv("DOMAIN")
