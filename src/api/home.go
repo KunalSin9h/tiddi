@@ -8,11 +8,6 @@ import (
 
 	"github.com/znip-in/tiddi/src/db"
 )
-
-type PostURL struct {
-	postURL string
-}
-
 /*
 Home
 Endpoint: https://your-domain.com/
@@ -33,22 +28,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		// show the sample client
 		// from ../frontend
 		http.ServeFile(w, r, "./src/frontend/index.html")
-		/*
-			html, err := template.ParseFiles("./src/frontend/index.html")
 
-			if err != nil {
-				log.Printf("[HOME HTML] Unable to parse html from ./src/frontend/index.html: %v", err)
-				w.WriteHeader(http.StatusInternalServerError)
-				w.Write([]byte("Internal Server Error"))
-				return
-			}
-
-			pr := PostURL{
-				postURL: os.Getenv("HOST"),
-			}
-
-			html.Execute(w, pr)
-		*/
 	} else {
 		// GET https://your-domain.com/93s9x_
 		// Give the image with the id
