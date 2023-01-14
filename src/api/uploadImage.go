@@ -64,7 +64,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if request.Image == nil {
-		log.Printf("[UPLOAD-IMAGE] Missing Data (image []byte) Request Body: %v\n", err)
+		log.Println("[UPLOAD-IMAGE] Missing Data (image []byte) Request Body")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
