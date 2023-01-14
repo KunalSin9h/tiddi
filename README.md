@@ -135,6 +135,7 @@ PUT /update-image/
 ## Tech Stack
 
 **Client:** HTML, CSS, JavaScript
+
 **Server:** Go, SQLite
 
 ## Authors
@@ -147,9 +148,8 @@ PUT /update-image/
 
 ## Acknowledgements
 
- - [Go](https://golang.org/)
- - [SQLite](https://www.sqlite.org/index.html)
  - [Mattn's SQLite3 driver for Go](https://github.com/mattn/go-sqlite3)
+ - [matoous's go-nanoid](https://github.com/matoous/go-nanoid)
 
 ## Support
 
