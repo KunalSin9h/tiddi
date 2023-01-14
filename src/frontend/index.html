@@ -181,7 +181,7 @@
 
                 postData({
                     title,
-                    data: bytes
+                    image: bytes
                 }).then((data) => {
                     showBox("green", "#DAF7A6", `<p><strong>URL</strong>:  <a href="${data.url}" target=_black>${data.url}</a>`)
                 }).catch(() => {

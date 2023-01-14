@@ -15,7 +15,7 @@ type DeleteImageRequest struct {
 
 /*
 DeleteImage is the endpoint to delete the image from db
-Endpoint: POST https://your-domain.com/delete-image/
+Endpoint: DELETE https://your-domain.com/delete-image/
 
 @description
 
@@ -31,6 +31,12 @@ Endpoint: POST https://your-domain.com/delete-image/
 
 func DeleteImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
+
+	if r.Method != "DELETE" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		w.Write([]byte("Method Not Allowed"))
+		return
+	}
 
 	data, err := io.ReadAll(r.Body)
 

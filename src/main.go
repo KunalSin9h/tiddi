@@ -60,13 +60,13 @@ func main() {
 	http.HandleFunc("/upload-image/", api.UploadImage)
 
 	/*
-		Endpoint: POST https://your-domain.com/delete-image/
+		Endpoint: DELETE https://your-domain.com/delete-image/
 		Delete Image
 	*/
 	http.HandleFunc("/delete-image/", api.DeleteImage)
 
 	/*
-		Endpoint: POST https://your-domain.com/update-image/
+		Endpoint: PUT https://your-domain.com/update-image/
 		Update Image
 	*/
 	http.HandleFunc("/update-image/", api.UpdateImage)

@@ -17,7 +17,7 @@ type UpdateImageRequest struct {
 
 /*
 UpdateImage is the endpoint to update image details the image from db
-Endpoint: POST https://your-domain.com/update-image/
+Endpoint: PUT https://your-domain.com/update-image/
 
 @description
 
@@ -34,6 +34,13 @@ Endpoint: POST https://your-domain.com/update-image/
 */
 
 func UpdateImage(w http.ResponseWriter, r *http.Request) {
+	EnableCors(&w)
+
+	if r.Method != "PUT" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		w.Write([]byte("Method Not Allowed"))
+		return
+	}
 
 	data, err := io.ReadAll(r.Body)
 

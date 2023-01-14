@@ -15,7 +15,7 @@ type GetImageRequest struct {
 
 type GetImageResponse struct {
 	Title string `json:"title"`
-	Image []byte `json:"data"`
+	Image []byte `json:"image"`
 }
 
 /*
@@ -35,6 +35,13 @@ Endpoint: POST https://your-domain.com/get-image/
 */
 func GetImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
+
+	if r.Method != "POST" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		w.Write([]byte("Method Not Allowed"))
+		return
+	}
+
 	data, err := io.ReadAll(r.Body)
 
 	if err != nil || len(data) == 0 {
