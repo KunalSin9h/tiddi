@@ -61,8 +61,8 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[GET-IMAGE] Unable to get image details: %v\n", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal Server Error"))
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Bad Request"))
 		return
 	}
 

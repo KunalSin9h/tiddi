@@ -72,8 +72,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			log.Printf("[GET-IMAGE] unable to get image form db: %v", err)
-			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("Internal Server Error"))
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("Bad Request"))
 			return
 		}
 
