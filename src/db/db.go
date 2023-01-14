@@ -12,7 +12,7 @@ import (
 // DATABASE the global connection for database
 var DATABASE *sql.DB
 
-func init() {
+func SETUP_DB() {
 	/*
 		Checking if database exists
 		Database path should be given at environment variable
@@ -68,4 +68,43 @@ func GetImageDetails(uiid string) (string, []byte, error) {
 
 	return title, image, nil
 
+}
+
+func DeleteImageFormDB(uiid string) error {
+
+	_, err := DATABASE.Exec("DELETE FROM images where id=?", uiid)
+
+	/*
+		err will not caused due to absence of that image
+			sql will not delete any think if it does't exist
+
+		So error here means something got wrong with db, itself
+	*/
+
+	if err != nil {
+		return errors.New("db error, while deleting entry")
+	}
+
+	return nil
+
+}
+
+func UpdateTitle(uiid, title string) error {
+	_, err := DATABASE.Exec("UPDATE images SET title=? WHERE id=?", title, uiid)
+
+	if err != nil {
+		return errors.New("db error, while updating title")
+	}
+
+	return nil
+}
+
+func UpdateImageData(uiid string, image []byte) error {
+	_, err := DATABASE.Exec("UPDATE images SET image=? WHERE id=?", image, uiid)
+
+	if err != nil {
+		return errors.New("db error, while updating image data")
+	}
+
+	return nil
 }
