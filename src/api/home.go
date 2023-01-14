@@ -83,10 +83,17 @@ func Home(w http.ResponseWriter, r *http.Request) {
 func getUiid(url string) (string, error) {
 
 	uiid := strings.Split(url, "/")
-	if len(uiid) > 3 {
-		return "", errors.New("invalid irl")
+	n := len(uiid)
+
+	if n == 2 {
+		return uiid[1], nil
+	} else if n == 3 {
+		if uiid[2] == "" {
+			return uiid[1], nil
+		} else {
+			return "", errors.New("invalid url")
+		}
+	} else {
+		return "", errors.New("invalid url")
 	}
-
-	return uiid[1], nil
-
 }
