@@ -31,6 +31,32 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             letter-spacing: 1px;
         }
+        .data {
+            display: none;
+        }
+
+        .znip {
+            position: fixed;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .znip svg:hover {
+            scale: 1.1;
+        }
+
+        .znip img {
+            height: 35px;
+            margin: 0 15px;
+        }
+
+        .znip a {
+            text-decoration: none;
+        }
 
     </style>
 </head>
@@ -43,11 +69,29 @@
         <div class="link">
         </div>
     </div>
+    <p class="data" data-fetchurl="{{ .FetchURL }}"></p>
+    <div class="znip">
+        <a href="https://github.com/znip-in" target="_blank" ><svg width="100px" height="100px" xmlns="http://www.w3.org/2000/svg" version="1.0" preserveAspectRatio="xMidYMid meet" viewBox="19 124.01 726.48 476.99">
+
+            <g transform="translate(0.000000,638.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+            <path d="M4479 5126 c-219 -61 -364 -277 -330 -494 38 -244 272 -415 512 -374 370 63 506 510 233 761 -113 104 -275 145 -415 107z"/>
+            <path d="M5946 4064 c-223 -40 -494 -177 -674 -339 l-61 -56 -108 128 c-59 70 -123 143 -141 162 l-33 34 -112 -6 c-62 -4 -214 -7 -339 -7 l-228 0 -2 -241 -3 -241 -39 56 c-89 130 -270 283 -423 360 -403 202 -902 148 -1252 -135 l-58 -48 -72 85 -72 84 20 34 c12 18 21 36 21 40 0 3 -490 6 -1090 6 l-1090 0 0 -330 0 -330 551 0 c508 0 551 -1 545 -16 -4 -10 -249 -446 -546 -971 -297 -524 -540 -956 -540 -958 0 -3 576 -5 1280 -5 l1280 0 0 778 c0 857 -1 835 63 955 85 161 246 256 433 257 231 0 418 -134 484 -349 19 -60 20 -96 20 -852 l0 -789 510 0 510 0 2 -497 3 -498 333 -3 332 -2 0 585 c0 322 1 585 3 585 2 0 66 -32 143 -70 236 -120 423 -167 604 -154 505 36 893 282 1104 700 57 114 110 272 132 399 25 140 25 424 0 560 -52 286 -176 528 -370 721 -115 115 -215 186 -360 255 -233 111 -529 155 -760 113z m-3856 -1314 l0 -720 -406 0 c-381 0 -406 1 -400 17 8 20 800 1422 804 1423 1 0 2 -324 2 -720z m4183 644 c190 -42 352 -166 435 -334 60 -122 76 -199 76 -360 0 -157 -14 -220 -76 -349 -73 -153 -231 -286 -398 -335 -84 -26 -231 -31 -318 -12 -246 52 -424 221 -504 476 -20 64 -23 96 -23 220 0 169 13 230 77 360 79 163 249 296 428 334 88 19 216 19 303 0z"/>
+            </g>
+        </svg>
+        </a>
+        <img src="https://tiddi.kunalsin9h.dev/nf_GkjI"  alt="tiddi logo">
+    </div>
     <script>
 
         const submit = document.getElementById("submit")
         const file = document.getElementById("file")
         const linkBox = document.querySelector('.link')
+
+        // Programmatically set url to fetch image data in sample-client
+        const data = document.querySelector('.data')
+        const fetchURL = data.dataset.fetchurl
+
+        console.log(fetchURL)
 
         function showBox(color, colorLight, inner){
             linkBox.style.padding = '5px'
@@ -58,10 +102,9 @@
             linkBox.innerHTML = inner
         }
 
-
         async function postData(data) {
             // Use Go template to provide url
-            const resp = await fetch("http://localhost:5656/upload-image/", {
+            const resp = await fetch(fetchURL, {
                 method: "POST",
                 mode: "cors",
                 headers: {

@@ -2,12 +2,20 @@ package api
 
 import (
 	"errors"
+	"fmt"
+	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/znip-in/tiddi/src/db"
 )
+
+type FetchURL struct {
+	FetchURL string
+}
+
 /*
 Home
 Endpoint: https://your-domain.com/
@@ -27,7 +35,22 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
 		// show the sample client
 		// from ../frontend
-		http.ServeFile(w, r, "./src/frontend/index.html")
+		t, err := template.ParseFiles("./src/frontend/index.html")
+
+		if err != nil {
+			log.Printf("[HOME HTML-PARSING] Unable to parse html: %v", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("Invalid Server Error"))
+			return
+		}
+
+		fetchURL := fmt.Sprintf("%s/upload-image/", os.Getenv("HOST"))
+
+		var htmlTemplateValues = FetchURL{
+			FetchURL: fetchURL,
+		}
+
+		t.Execute(w, htmlTemplateValues)
 
 	} else {
 		// GET https://your-domain.com/93s9x_
