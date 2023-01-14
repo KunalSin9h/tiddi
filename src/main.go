@@ -8,13 +8,15 @@ import (
 	"time"
 
 	"github.com/znip-in/tiddi/src/api"
-	_ "github.com/znip-in/tiddi/src/db"
+	"github.com/znip-in/tiddi/src/db"
 )
 
 var HOST = os.Getenv("HOST")
 var PORT = os.Getenv("PORT")
 
 func init() {
+
+	db.SETUP_DB()
 
 	if PORT == "" {
 		log.Println("[MAIN] Using default port (5656)")
@@ -52,10 +54,22 @@ func main() {
 
 	/*
 		Endpoint: POST https://your-domain.com/upload-image/
-		Create a non blocking channel to handle the request
+		Upload image
 
 	*/
 	http.HandleFunc("/upload-image/", api.UploadImage)
+
+	/*
+		Endpoint: POST https://your-domain.com/delete-image/
+		Delete Image
+	*/
+	http.HandleFunc("/delete-image/", api.DeleteImage)
+
+	/*
+		Endpoint: POST https://your-domain.com/update-image/
+		Update Image
+	*/
+	http.HandleFunc("/update-image/", api.UpdateImage)
 
 	/*
 		Start The Server
