@@ -18,6 +18,7 @@ Go to https://tiddi.kunalsin9h.dev to see a demo of the project.
 - [x] Get image details
 
 ## Setup Locally
+
 ### Prerequisites
 - [Go](https://golang.org/dl/) (latest version recommended)
 - [SQLite](https://www.sqlite.org/download.html) (latest version recommended)
