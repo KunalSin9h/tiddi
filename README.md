@@ -62,6 +62,31 @@ go run main.go
 ```
 7. Open http://localhost:5656 in your browser
 
+## Environment Variables
+You can set the following environment variables to change the default settings of the server.
+
+| Environment Variable | Default Value | Description |
+| :------------------- | :------------ | :---------- |
+| `PORT` | `5656` | Port on which the server will run |
+| `DB` | `./database/dev.db` | Path to the database file |
+| `HOST` | `localhost` | Host on which the server will run |
+
+#### Example
+```bash
+export PORT=8080
+export DB=./database/prod.db
+export HOST=https://tiddi.kunalsin9h.dev
+
+go run main.go
+```
+
+or alternative way is set the environment while running the server
+```bash
+PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.dev go run main.go
+```
+
+> The `HOST` environment variable is used to generate the `unique image id` of the image, it is recommended to set it to the domain name of the server. `HOST` is also used in the sample frontend to fetch the image from the server.
+
 ## API Reference
 ### Sample Client
 #### The Sample Frontend is available at `./src/frontend` directory, it is served by the server at `/` route.
