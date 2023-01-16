@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/znip-in/tiddi/src/api"
-	"github.com/znip-in/tiddi/src/db"
+	"github.com/kunalsin9h/tiddi/src/api"
+	"github.com/kunalsin9h/tiddi/src/db"
 )
 
 var HOST = os.Getenv("HOST")

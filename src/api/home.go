@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/znip-in/tiddi/src/db"
+	"github.com/kunalsin9h/tiddi/src/db"
 )
 
 type FetchURL struct {

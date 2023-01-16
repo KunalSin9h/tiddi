@@ -26,7 +26,7 @@ Go to https://tiddi.kunalsin9h.dev to see a demo of the project.
 ### Steps
 1. Clone the repo
 ```bash
-git clone https://github.com/znip-in/tiddi.git
+git clone https://github.com/kunalsin9h/tiddi.git
 ```
 2. Change the working directory
 ```bash
@@ -179,11 +179,11 @@ PUT /update-image/
 
 ## Support
 
-For support, email `znip@kunalsin9h.dev`
+For support, email `kunal@kunalsin9h.dev`
 
 ## Feedback
 
-If you have any feedback, please reach out to us at `znip@kunalsin9h.dev`
+If you have any feedback, please reach out to us at `kunal@kunalsin9h.dev`
 
 ## Contributing
 
