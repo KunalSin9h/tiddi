@@ -62,7 +62,7 @@ docker run \
     -d --name tiddi --rm \
     -p 5000:5000 -e PORT=5000 \
     -e DB=./database/prod.db \
-    -e HOST=https://tiddi.kunalsinha.dev \
+    -e HOST=https://tiddi.kunalsin9h.dev \
     --mount type=bind,source="$(pwd)"/database/prod.db,target=/tiddi/database/prod.db \
     kunalsin9h/tiddi:latest
 ```
