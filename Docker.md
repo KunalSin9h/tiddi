@@ -1,4 +1,4 @@
-### Run Tiddi in Docker
+# Run Tiddi in Docker
 
 #### Prerequisites
 - [Docker](https://docs.docker.com/get-docker/) (20.10.22 or higher recommended)
