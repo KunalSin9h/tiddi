@@ -1,5 +1,6 @@
-FROM golang:1.19.5-alpine3.17
-
+# Builder stage
+FROM golang:1.19.5-alpine3.17 as BUILDER
+# install gcc and musl-dev for compiling go code
 RUN apk add gcc musl-dev
 
 WORKDIR /tiddi
@@ -11,12 +12,18 @@ RUN go mod download
 
 COPY src ./src
 
-RUN go build -o main ./src/main.go
+RUN go build ./src/main.go
+
+# Final Stage
+FROM alpine:3.17
+
+WORKDIR /tiddi
+
+# Copy sample frontend
+COPY --from=BUILDER /tiddi/src/frontend ./src/frontend
+
+COPY --from=BUILDER /tiddi/main .
 
 EXPOSE 5656
 
 CMD ["./main"]
-
-# We can do better by using a multi-stage build
-# cause we don't need the go compiler in the final image
-# and we can also use a smaller base image
