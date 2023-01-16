@@ -3,9 +3,9 @@ package prechecks
 import (
 	"database/sql"
 	"fmt"
+	"github.com/kunalsin9h/tiddi/src/db"
 	"log"
 	"os"
-	"github.com/znip-in/tiddi/src/db"
 )
 
 /*
