@@ -19,6 +19,8 @@ Go to https://tiddi.kunalsin9h.dev to see a demo of the project.
 
 ## Setup Locally
 
+> If you want to run the server inside a docker container, you can follow these [instructions](https://github.com/kunalsin9h/tiddi/blob/main/Docker.md)
+
 ### Prerequisites
 - [Go](https://golang.org/dl/) (latest version recommended)
 - [SQLite](https://www.sqlite.org/download.html) (latest version recommended)
