@@ -33,6 +33,7 @@ func DeleteImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
 
 	if r.Method != "DELETE" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("Method Not Allowed"))
 		return
@@ -41,6 +42,7 @@ func DeleteImage(w http.ResponseWriter, r *http.Request) {
 	data, err := io.ReadAll(r.Body)
 
 	if err != nil {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -52,6 +54,7 @@ func DeleteImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[DELETE IMAGE] Unable to unmarshal data from request: %v", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -60,9 +63,12 @@ func DeleteImage(w http.ResponseWriter, r *http.Request) {
 	err = db.DeleteImageFormDB(res.Uiid)
 
 	if err != nil {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 	} else {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK"))
 	}
 }

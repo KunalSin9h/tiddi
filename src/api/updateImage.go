@@ -37,6 +37,7 @@ func UpdateImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
 
 	if r.Method != "PUT" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("Method Not Allowed"))
 		return
@@ -45,6 +46,7 @@ func UpdateImage(w http.ResponseWriter, r *http.Request) {
 	data, err := io.ReadAll(r.Body)
 
 	if err != nil {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -56,6 +58,7 @@ func UpdateImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[UPDATE IMAGE] Unable to unmarshal data from request: %v", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -65,6 +68,7 @@ func UpdateImage(w http.ResponseWriter, r *http.Request) {
 		err = db.UpdateTitle(req.Uiid, req.Title)
 		if err != nil {
 			log.Printf("[UPDATE TITLE] Error while updating title: %v", err)
+			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("Internal Server Error"))
 			return
@@ -75,11 +79,14 @@ func UpdateImage(w http.ResponseWriter, r *http.Request) {
 		err = db.UpdateImageData(req.Uiid, req.Image)
 		if err != nil {
 			log.Printf("[UPDATE TITLE] Error while updating image data: %v", err)
+			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("Internal Server Error"))
 			return
 		}
 	}
 
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
 }

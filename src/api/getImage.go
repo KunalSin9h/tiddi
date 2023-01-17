@@ -37,6 +37,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
 
 	if r.Method != "POST" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("Method Not Allowed"))
 		return
@@ -45,6 +46,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	data, err := io.ReadAll(r.Body)
 
 	if err != nil || len(data) == 0 {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -53,12 +55,14 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	var request GetImageRequest
 	if err := json.Unmarshal(data, &request); err != nil {
 		log.Printf("[GET-IMAGE] unable to unmarshal data received: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
 	}
 
 	if request.Uiid == "" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -68,6 +72,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[GET-IMAGE] Unable to get image details: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -82,11 +87,13 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[GET-IMAGE] Unable to marshal response: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 	w.Write(resBytes)
 }

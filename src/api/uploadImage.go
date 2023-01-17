@@ -39,6 +39,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
 
 	if r.Method != "POST" {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("Method Not Allowed"))
 		return
@@ -48,6 +49,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[UPLOAD-IMAGE] Error Reading Request Body: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -58,6 +60,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[UPLOAD-IMAGE] Error Parsing Request Body: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -65,6 +68,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if request.Image == nil {
 		log.Println("[UPLOAD-IMAGE] Missing Data (image []byte) Request Body")
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -74,6 +78,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[UPLOAD-IMAGE] Error Generating Unique Image Id: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -83,6 +88,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[STORE IMAGE] Error storing Data into db, %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -90,6 +96,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if os.Getenv("HOST") == "" {
 		log.Println("[UPLOAD-IMAGE] HOST is absent while preparing image url")
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
@@ -103,11 +110,13 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("[UPLOAD-IMAGE] Error while sending response Data: %v\n", err)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 	w.Write(jsonResponse)
 }

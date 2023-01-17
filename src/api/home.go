@@ -39,6 +39,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			log.Printf("[HOME HTML-PARSING] Unable to parse html: %v", err)
+			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("Invalid Server Error"))
 			return
@@ -63,6 +64,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if err != nil {
+			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte("Bad Request"))
 			return
@@ -71,6 +73,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		image, err := db.GetImageBytes(uiid)
 
 		if err != nil {
+			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte("Bad Request"))
 			return
