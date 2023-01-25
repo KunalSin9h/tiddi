@@ -123,7 +123,7 @@ GET /{uiid}
 
 ### Get Image Details
 ```http
-GET /get-image/
+POST /get-image/
 ```
 
 | Parameter | Type     | Description                       |
