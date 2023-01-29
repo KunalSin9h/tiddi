@@ -4,7 +4,7 @@
 </div>
 
 
-Tiddy is self hosted [image server](https://en.wikipedia.org/wiki/Image_server) written in Go
+## Tiddy is self hosted [image server](https://en.wikipedia.org/wiki/Image_server) written in Go
 
 
 ## Demo
