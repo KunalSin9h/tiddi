@@ -16,3 +16,4 @@
 
 database/
 *.db
+/db-data/

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  redis:
+    image: "redis:7.0.8-alpine3.17"
+    ports:
+      - "6379:6379"
+    deploy:
+      mode: global
+
+    volumes:
+      - ./db-data/redis:/data
