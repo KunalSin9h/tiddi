@@ -75,14 +75,15 @@ docker run \
 ```bash
 docker run \
     -d --name tiddi --rm \
-    -p 5000:5000 -e PORT=5000 \
-    -e DB=./database/prod.db \
+    -p 5656:5656 \
+    -e PORT=5656 \
+    -e DB=./database/dev.db \
     -e HOST=https://tiddi.kunalsin9h.dev \
-    --mount type=bind,source="$(pwd)"/database/prod.db,target=/tiddi/database/prod.db \
+    --mount type=bind,source="$(pwd)"/database/dev.db,target=/tiddi/database/dev.db \
     ghcr.io/kunalsin9h/tiddi-container:latest
 ```
 
-Now open the browser and go to [http://localhost:5000](http://localhost:5000)
+Now open the browser and go to [http://localhost:5656](http://localhost:5000)
 
 > :warning: Make sure the HOST domain name is same as the one you are using to access the server
 
