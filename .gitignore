@@ -16,3 +16,6 @@
 
 database/
 *.db
+
+# Mics
+.vim
