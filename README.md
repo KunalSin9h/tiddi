@@ -61,7 +61,7 @@ Exit the sqlite3 shell
 
 6. Run the server
 ```bash
-go run main.go
+go run src/main.go
 ```
 7. Open http://localhost:5656 in your browser
 
