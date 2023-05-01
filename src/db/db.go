@@ -5,6 +5,7 @@ import (
 	"errors"
 	"log"
 	"os"
+	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -27,6 +28,11 @@ func SETUP_DB() {
 		os.Setenv("DB", DB)
 	}
 
+	foldersAndFile := strings.Split(DB, "/")
+	folders := strings.Join(foldersAndFile[0:len(foldersAndFile)-1], "/")
+	os.MkdirAll(folders, os.ModePerm)
+	os.Create(DB)
+
 	db, err := sql.Open("sqlite3", DB)
 
 	if err != nil {
@@ -34,6 +40,19 @@ func SETUP_DB() {
 	}
 
 	DATABASE = db
+
+	/*
+		Creating Images Table if not exist
+	*/
+	DATABASE.Exec(
+		`CREATE TABLE IF NOT EXISTS
+		images (
+			id varchar(7) primary key,
+			title varchar(255),
+			image blob not null
+		);`,
+	)
+
 }
 
 func StoreImage(uiid, title string, imageData []byte) error {

@@ -29,28 +29,6 @@ mkdir database
 touch database/dev.db
 ```
 
-4. Crete `images` table in the database file
-
-```bash
-sqlite3 database/dev.db
-```
-
-Execute the following SQL query in the sqlite3 shell
-
-```sql
-CREATE TABLE images (
-    id varchar(7) primary key,
-    title varchar(255),
-    image blob not null
-);
-```
-
-Exit the sqlite3 shell
-
-```bash
-.exit
-```
-
 5. Run the server
 
 ```bash
