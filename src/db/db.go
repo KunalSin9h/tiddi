@@ -28,10 +28,13 @@ func SETUP_DB() {
 		os.Setenv("DB", DB)
 	}
 
-	foldersAndFile := strings.Split(DB, "/")
-	folders := strings.Join(foldersAndFile[0:len(foldersAndFile)-1], "/")
-	os.MkdirAll(folders, os.ModePerm)
-	os.Create(DB)
+	if _, err := os.Stat(DB); err != nil {
+		log.Printf("[DB] Database file does not exist, creating %s\n", DB)
+		foldersAndFile := strings.Split(DB, "/")
+		folders := strings.Join(foldersAndFile[0:len(foldersAndFile)-1], "/")
+		os.MkdirAll(folders, os.ModePerm)
+		os.Create(DB)
+	}
 
 	db, err := sql.Open("sqlite3", DB)
 
