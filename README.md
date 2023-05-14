@@ -8,7 +8,7 @@
 
 ## Demo
 
-Go to https://tiddi.kunalsin9h.dev to see a demo of the project.
+Go to https://tiddi-demo.kunalsin9h.dev to see a demo of the project. ( ⚠️ Note: The Demo Database is truncated every day, so nothing will be stored permanently) 
 
 ## Features (API)
 
