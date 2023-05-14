@@ -5,7 +5,7 @@ import (
 	"errors"
 	"log"
 	"os"
-	"strings"
+	"path/filepath"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -30,8 +30,7 @@ func SETUP_DB() {
 
 	if _, err := os.Stat(DB); err != nil {
 		log.Printf("[DB] Database file does not exist, creating %s\n", DB)
-		foldersAndFile := strings.Split(DB, "/")
-		folders := strings.Join(foldersAndFile[0:len(foldersAndFile)-1], "/")
+		folders := filepath.Dir(DB)
 		os.MkdirAll(folders, os.ModePerm)
 		os.Create(DB)
 	}
