@@ -8,7 +8,7 @@
 
 ## Demo
 
-Go to https://tiddi-demo.kunalsin9h.dev to see a demo of the project. ( ⚠️ Note: The Demo Database is truncated every day, so nothing will be stored permanently) 
+Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project. ( ⚠️ Note: The Demo Database is truncated every day, so nothing will be stored permanently) 
 
 ## Features (API)
 
@@ -64,7 +64,7 @@ You can set the following environment variables to change the default settings o
 ```bash
 export PORT=8080
 export DB=./database/prod.db
-export HOST=https://tiddi.kunalsin9h.dev
+export HOST=https://tiddi.kunalsin9h.com
 
 go run main.go
 ```
@@ -72,7 +72,7 @@ go run main.go
 or alternative way is set the environment while running the server
 
 ```bash
-PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.dev go run main.go
+PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.com go run main.go
 ```
 
 > The `HOST` environment variable is used to generate the `unique image id` of the image, it is recommended to set it to the domain name of the server. `HOST` is also used in the sample frontend to fetch the image from the server.
@@ -178,11 +178,11 @@ PUT /update-image/
 
 ## Support
 
-For support, email `kunal@kunalsin9h.dev`
+For support, email `kunal@kunalsin9h.com`
 
 ## Feedback
 
-If you have any feedback, please reach out to us at `kunal@kunalsin9h.dev`
+If you have any feedback, please reach out to us at `kunal@kunalsin9h.com`
 
 ## Contributing
 

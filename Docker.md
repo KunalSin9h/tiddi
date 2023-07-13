@@ -56,7 +56,7 @@ docker run \
     -p 5656:5656 \
     -e PORT=5656 \
     -e DB=./database/dev.db \
-    -e HOST=https://tiddi.kunalsin9h.dev \
+    -e HOST=https://tiddi.kunalsin9h.com \
     --mount type=bind,source="$(pwd)"/database/dev.db,target=/tiddi/database/dev.db \
     ghcr.io/kunalsin9h/tiddi-container:latest
 ```
