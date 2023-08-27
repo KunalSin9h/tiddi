@@ -4,7 +4,10 @@
 
 ## Demo
 
-Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project. ( ⚠️ Note: The Demo Database is truncated every day, so nothing will be stored permanently) 
+Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project. 
+
+> [!WARNING]
+> The Demo Database is truncated every day, so nothing will be stored permanently
 
 ## Features (API)
 
