@@ -19,7 +19,6 @@ Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project.
 
 ## Setup Locally
 
-> [!INFO]
 > If you want to run the server inside a docker container, you can follow these [instructions](https://github.com/kunalsin9h/tiddi/blob/main/Docker.md)
 
 ### Prerequisites
