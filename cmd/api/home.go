@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kunalsin9h/tiddi/src/db"
+	"github.com/kunalsin9h/tiddi/internal/db"
 )
 
 type FetchURL struct {
@@ -35,7 +35,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
 		// show the sample client
 		// from ../frontend
-		t, err := template.ParseFiles("./src/frontend/index.html")
+		t, err := template.ParseFiles("./cmd/frontend/index.html")
 
 		if err != nil {
 			log.Printf("[HOME HTML-PARSING] Unable to parse html: %v", err)

@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kunalsin9h/tiddi/src/db"
+	"github.com/kunalsin9h/tiddi/internal/db"
 )
 
 type GetImageRequest struct {

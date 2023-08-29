@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/kunalsin9h/tiddi/src/db"
-	"github.com/kunalsin9h/tiddi/src/uuid"
+	"github.com/kunalsin9h/tiddi/internal/db"
+	"github.com/kunalsin9h/tiddi/internal/uuid"
 )
 
 type UploadImageRequest struct {
