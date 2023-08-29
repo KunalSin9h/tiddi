@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/kunalsin9h/tiddi/src/api"
-	"github.com/kunalsin9h/tiddi/src/db"
+	"github.com/kunalsin9h/tiddi/cmd/api"
+	"github.com/kunalsin9h/tiddi/internal/db"
 )
 
 var HOST = os.Getenv("HOST")
@@ -75,5 +75,5 @@ func main() {
 		Start The Server
 	*/
 	log.Printf("Started server at port %s", PORT)
-	SERVER.ListenAndServe()
+	log.Fatal(SERVER.ListenAndServe())
 }

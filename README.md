@@ -4,7 +4,7 @@
 
 ## Demo
 
-Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project. 
+Go to https://tiddi-demo.kunalsin9h.com to see a demo of the project.
 
 > [!WARNING]
 > The Demo Database is truncated every day, so nothing will be stored permanently
@@ -43,7 +43,7 @@ cd tiddi
 4. Run the server
 
 ```bash
-go run src/main.go
+go run cmd/main.go
 ```
 
 7. Open http://localhost:5656 in your browser
@@ -65,7 +65,7 @@ export PORT=8080
 export DB=./database/prod.db
 export HOST=https://tiddi.kunalsin9h.com
 
-go run main.go
+go run cmd/main.go
 ```
 
 or alternative way is set the environment while running the server
