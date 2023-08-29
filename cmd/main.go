@@ -46,6 +46,7 @@ func main() {
 		Endpoint: GET https://your-domain.com/
 	*/
 	http.HandleFunc("/", api.Home)
+
 	/*
 		Endpoint: POST https://your-domain.com/get-image/
 		Get the full image, title and other details .

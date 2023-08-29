@@ -71,16 +71,16 @@ go run cmd/main.go
 or alternative way is set the environment while running the server
 
 ```bash
-PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.com go run main.go
+PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.com go run dmd/main.go
 ```
 
 > The `HOST` environment variable is used to generate the `unique image id` of the image, it is recommended to set it to the domain name of the server. `HOST` is also used in the sample frontend to fetch the image from the server.
 
-## API Reference
+## API Docs
 
 ### Sample Client
 
-#### The Sample Frontend is available at `./src/frontend` directory, it is served by the server at `/` route.
+#### The Sample Frontend is available at `./cmd/frontend` directory, it is served by the server at `/` route.
 
 ```http
 GET /
@@ -89,7 +89,16 @@ GET /
 ### Upload Image
 
 ```http
-POST /upload-image/
+POST /image/
+```
+
+Request:
+
+```json
+{
+  "image": [23, 112, 2,...34],
+  "title": "Image Title"
+}
 ```
 
 | Parameter | Type     | Description                         |
@@ -116,7 +125,7 @@ GET /{uiid}
 ### Get Image Details
 
 ```http
-POST /get-image/
+GET /get-image/{uuid}
 ```
 
 | Parameter | Type     | Description                     |
