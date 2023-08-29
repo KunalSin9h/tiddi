@@ -87,18 +87,19 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 func getUiid(url string) (string, error) {
 
-	uiid := strings.Split(url, "/")
-	n := len(uiid)
+	tokens := strings.Split(url, "/")
 
-	if n == 2 {
-		return uiid[1], nil
-	} else if n == 3 {
-		if uiid[2] == "" {
-			return uiid[1], nil
-		} else {
-			return "", errors.New("invalid url")
+	paths := make([]string, 0)
+
+	for _, token := range tokens {
+		if token != "/" && token != " " {
+			paths = append(paths, token)
 		}
-	} else {
-		return "", errors.New("invalid url")
 	}
+
+	if len(paths) >= 2 {
+		return paths[len(paths)-1], nil
+	}
+	return "", errors.New("invalid url")
+
 }

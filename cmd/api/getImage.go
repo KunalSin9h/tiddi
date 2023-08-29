@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"io"
 	"log"
 	"net/http"
 
@@ -20,13 +19,9 @@ type GetImageResponse struct {
 
 /*
 GetImage is the endpoint to get the image details
-Endpoint: POST https://your-domain.com/get-image/
+Endpoint: Get https://your-domain.com/get-image/{uuid}
 
 @description
-
-	Request.Body = {
-		"uiid": "uiid of the image"
-	}
 
 	`uiid` -> Unique Image Id
 
@@ -36,39 +31,30 @@ Endpoint: POST https://your-domain.com/get-image/
 func GetImage(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
 
-	if r.Method != "POST" {
+	if r.Method != "GET" {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("Method Not Allowed"))
 		return
 	}
 
-	data, err := io.ReadAll(r.Body)
+	uiid, err := getUiid(r.URL.Path)
 
-	if err != nil || len(data) == 0 {
+	if err != nil {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
 	}
 
-	var request GetImageRequest
-	if err := json.Unmarshal(data, &request); err != nil {
-		log.Printf("[GET-IMAGE] unable to unmarshal data received: %v\n", err)
-		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal Server Error"))
-		return
-	}
-
-	if request.Uiid == "" {
+	if uiid == "" {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
 	}
 
-	title, image, err := db.GetImageDetails(request.Uiid)
+	title, image, err := db.GetImageDetails(uiid)
 
 	if err != nil {
 		log.Printf("[GET-IMAGE] Unable to get image details: %v\n", err)
