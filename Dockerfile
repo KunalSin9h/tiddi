@@ -5,7 +5,7 @@ RUN apk add gcc musl-dev
 
 WORKDIR /tiddi
 
-COPY go.mod .
+COPY go.mod .dfdf
 COPY go.sum .
 
 RUN go mod download
