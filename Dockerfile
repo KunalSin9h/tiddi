@@ -4,8 +4,8 @@ FROM golang:1.21.0-alpine3.17 as BUILDER
 RUN apk add gcc musl-dev
 
 WORKDIR /tiddi
-
-COPY go.mod .dfdf
+aman
+COPY go.mod .
 COPY go.sum .
 
 RUN go mod download
