@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Image</title>
+    <title>Tiddi - Upload Image</title>
     <style>
+        
         body {
-            padding: 0;
-            margin: 0;
-            background-color: antiquewhite;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        .form-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #fff;
+            background-image: radial-gradient(#e4e4e4 1px, transparent 0);
+            background-size: 30px 30px;
         }
+        
         .link {
             width: 100%;
             max-width: 400px;
@@ -32,7 +24,15 @@
         a {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             letter-spacing: 1px;
+            color: #555;
+            transition: 169ms;
         }
+
+        a:hover {
+            color: #333;
+
+        }
+
         .data {
             display: none;
         }
@@ -80,40 +80,6 @@
             text-decoration: underline;
         }
 
-        #submit {
-            outline: none;
-            background: none;
-            border: 2px solid black;
-            border-radius: 5px;
-            margin: 10px 0;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 15px;
-            letter-spacing: 1px;
-        }
-
-        #submit:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-        }
-
-        ::-webkit-file-upload-button {
-            outline: none;
-            background-color: cadetblue;
-            border: 2px solid black;
-            border-radius: 5px;
-            margin: 0 10px 0 0;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 15px;
-            letter-spacing: 1px;
-        }
-
-        ::-webkit-file-upload-button:hover {
-            background-color: #426f70;
-            cursor: pointer;
-        }
-
         .spinner {
             display: flex;
             justify-content: center;
@@ -125,27 +91,116 @@
             margin: 0 10px;
         }
 
+        .upload {
+            display: flex;
+            justify-items: center;
+            place-items: center;
+            height: 100vh;
+        }
+
+        #form {
+            text-align: center;
+        }
+
+        .form-area {
+            display: flex;
+            flex-direction: column;
+            border-radius: 0.5rem;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            padding-right: 10rem;
+            padding-left: 10rem;
+            background-color: rgb(254, 254, 254);
+            border: 1px dashed #d8d8d8;
+        }
+
+        .no-image {
+            font-size: 16px;
+            font-weight: 600;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .no-image-fix {
+            font-size: 12px;
+            font-weight: 400;
+            color: #555;
+        }
+        
+        .upload-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #submit {
+            background:#333;
+            color: #FEFEFE;
+            border: 1px solid rgb(243, 243, 243);
+            border-radius: 5px;
+            margin: 16px 0;
+            padding: 10px 15px;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: 169ms;
+       }
+
+        #submit:hover {
+            background:#222;
+            cursor: pointer;
+        }
+
+        ::-webkit-file-upload-button {
+            background-color: #333;
+            color: #FEFEFE;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 0 10px 0 0;
+            padding: 10px 15px;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: 169ms;
+        }
+
+        ::-webkit-file-upload-button:hover {
+            background-color: #222;
+            cursor: pointer;
+        }
+
+        .imageUrl {
+            color: #333;
+        }
+
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <form id="form">
-            <input type="file" id="file" accept="image/*" name="filename">
-            <br>
-            <input type="submit" id="submit">
-        </form>
-        <div class="link">
-        </div>
-    </div>
+    <div>
     <p class="data" data-fetchurl="{{ .FetchURL }}"></p>
     <div class="tiddi">
-        <img src="https://tiddi.kunalsin9h.com/CPDWmsx"  alt="tiddi logo">
+        <img src="https://tiddi.kunalsin9h.com/CPDWmsx" alt="tiddi logo">
+    </div>
+    <div class="upload">
+        <div class="upload-area">
+        <div class="form-area">
+            <form id="form">
+                <input type="file" id="file" accept="image/*" name="filename">
+                <br>
+            </form>
+            <span class="link"> </span>
+        </div>
+        <input type="submit" id="submit">
+        </div>
+    </div>
+
     </div>
     <div class="footer">
         <p class="copy">&#169; 2023</p>
-        <a href="https://github.com/kunalsin9h" target="_blank" class="name" >
+        <a href="https://github.com/kunalsin9h" target="_blank" class="name">
             Kunal Singh
         </a>
+    </div>
     </div>
     <script>
 
@@ -160,8 +215,7 @@
         function showBox(color, colorLight, inner){
             linkBox.style.padding = '5px'
             linkBox.style.marginTop = '15px'
-            linkBox.style.borderRadius = '10px'
-            linkBox.style.border = `1px solid ${color}`
+            linkBox.style.borderRadius = '4px'
             linkBox.style.backgroundColor = colorLight
             linkBox.innerHTML = inner
         }
@@ -182,13 +236,13 @@
         submit.addEventListener('click', (e) => {
             e.preventDefault()
 
-            showBox("black", "#d3d3d3", "<div class='spinner'><p>Getting URL</p><img class='spin' src='https://tiddi.kunalsin9h.com/n7uV23O' alt='spinner logo'></div>")
+            showBox("black", "#F0F0F0", "<div class='spinner'><p>Getting URL</p><img class='spin' src='https://tiddi.kunalsin9h.com/n7uV23O' alt='spinner logo'></div>")
 
             const reader = new FileReader()
             try {
                 reader.readAsArrayBuffer(file.files[0])
             } catch(err) {
-                showBox("orange", "#FFFF99", "<p>Image not selected</p>")
+                showBox("dirtywhite", "#F0F0F0", "<p class='no-image' >Image not selected <span class='no-image-fix'>Please Upload An Image:D</span></p>")
             }
 
             reader.onload = function() {
@@ -200,14 +254,14 @@
                     title,
                     image: bytes
                 }).then((data) => {
-                    showBox("green", "#DAF7A6", `<p><strong>URL</strong>:  <a href="${data.url}" target=_black>${data.url}</a>`)
+                    showBox("green", "#F0F0F0", `<p class="imageUrl"><strong>URL</strong>:  <a href="${data.url}" target=_black>${data.url}</a>`)
                 }).catch(() => {
-                    showBox("red", "#FFCCCB", "<p>Something went wrong, try again!</p>")
+                    showBox("red", "#F0F0F0", "<p>Something went wrong, try again!</p>")
                 })
             };
 
             reader.onerror = function() {
-                showBox("red", "#FFCCCB", "<p>Something went wrong, try again!</p>")
+                showBox("red", "#F0F0F0", "<p>Something went wrong, try again!</p>")
             };
         })
 
