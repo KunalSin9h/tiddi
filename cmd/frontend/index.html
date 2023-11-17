@@ -14,6 +14,7 @@
             background-color: #fff;
             background-image: radial-gradient(#e4e4e4 1px, transparent 0);
             background-size: 30px 30px;
+            padding: 1rem;
         }
         
         .link {
@@ -38,10 +39,6 @@
         }
 
         .tiddi {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,7 +98,6 @@
         #form {
             text-align: center;
         }
-
         .form-area {
             display: flex;
             flex-direction: column;
@@ -113,6 +109,33 @@
             background-color: rgb(254, 254, 254);
             border: 1px dashed #d8d8d8;
         }
+
+	    @media screen and (max-width: 600px) { 
+		.form-area {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            padding-right: 7rem;
+            padding-left: 7rem;
+		}
+	}
+
+	    @media screen and (max-width: 500px) { 
+		.form-area {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            padding-right: 4rem;
+            padding-left: 4rem;
+		}
+	}
+
+    	    @media screen and (max-width: 400px) { 
+		.form-area {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            padding-right: 2rem;
+            padding-left: 2rem;
+		}
+	}
 
         .no-image {
             font-size: 16px;
