@@ -7,7 +7,7 @@ services:
       - "5656:5656"
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
     environment:
       PORT: 5656
       DB: ./database/dev.db
