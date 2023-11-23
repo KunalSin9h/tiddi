@@ -12,3 +12,6 @@ services:
       PORT: 5656
       DB: ./database/dev.db
       HOST: http://localhost:5656
+    volumes:
+      - /home/kunalsin9h/mount:/tiddi/database/dev.db
+
