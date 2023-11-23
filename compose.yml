@@ -13,5 +13,5 @@ services:
       DB: ./database/dev.db
       HOST: http://localhost:5656
     volumes:
-      - /home/kunalsin9h/mount/:/tiddi/database/dev.db
+      - /home/kunal/mounts/:/tiddi/database/dev.db
 
