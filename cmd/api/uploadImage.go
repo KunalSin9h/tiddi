@@ -74,7 +74,7 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	uniqueImageId, err := uuid.New(7)
+	uniqueImageId, err := uuid.New(5)
 
 	if err != nil {
 		log.Printf("[UPLOAD-IMAGE] Error Generating Unique Image Id: %v\n", err)

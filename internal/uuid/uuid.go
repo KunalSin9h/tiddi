@@ -31,7 +31,8 @@ import (
 )
 
 // defaultAlphabet is the alphabet used for ID characters by default.
-var defaultAlphabet = []rune("_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+// BASE-58
+var defaultAlphabet = []rune("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
 
 const (
 	defaultSize = 21
@@ -117,7 +118,7 @@ func New(l ...int) (string, error) {
 	}
 	id := make([]rune, size)
 	for i := 0; i < size; i++ {
-		id[i] = defaultAlphabet[bytes[i]&63]
+		id[i] = defaultAlphabet[bytes[i]&57]
 	}
 	return string(id[:size]), nil
 }
