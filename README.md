@@ -1,7 +1,7 @@
 ## Tiddy is self hosted [image server](https://en.wikipedia.org/wiki/Image_server) written in Go
 
 <div align="center">
-  <h3>Powdered by</h3>
+  <h3>Powered by</h3>
   <div style="display: flex; justify-content: center;">
   <a href="https://turso.tech/">
   <img width="200px" src="https://i.imgur.com/jg5epki.png" alt="TursoDB Logo">
