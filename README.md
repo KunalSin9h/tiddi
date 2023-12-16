@@ -4,10 +4,10 @@
   <h3>Powdered by</h3>
   <div style="display: flex; justify-content: center;">
   <a href="https://turso.tech/">
-  <img width="150px" src="https://i.imgur.com/jg5epki.png" alt="TursoDB Logo">
+  <img width="200px" src="https://i.imgur.com/jg5epki.png" alt="TursoDB Logo">
   </a>
   <a href="https://github.com/meltred/meltcd" style="margin-left: 20px;">
-  <img width="140px" src="https://i.imgur.com/kTlutIZ.png" alt="MeltCD Logo"> 
+  <img width="200px" src="https://i.imgur.com/kTlutIZ.png" alt="MeltCD Logo"> 
   </a>
   </div>
 </div> 
