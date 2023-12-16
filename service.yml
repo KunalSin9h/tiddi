@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  tiddi:
+    image: ghcr.io/kunalsin9h/tiddi-container:latest
+    ports:
+      - "5656:5656"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      PORT: 5656
+      HOST: https://tiddi.kunalsin9h.com
+    env_file:
+      - ~/secrets/tiddi
