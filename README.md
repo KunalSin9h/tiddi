@@ -1,5 +1,17 @@
 ## Tiddy is self hosted [image server](https://en.wikipedia.org/wiki/Image_server) written in Go
 
+<div align="center">
+  <h3>Powdered by</h3>
+  <div style="display: flex; justify-content: center;">
+  <a href="https://turso.tech/">
+  <img width="150px" src="https://i.imgur.com/jg5epki.png" alt="TursoDB Logo">
+  </a>
+  <a href="https://github.com/meltred/meltcd" style="margin-left: 20px;">
+  <img width="140px" src="https://i.imgur.com/kTlutIZ.png" alt="MeltCD Logo"> 
+  </a>
+  </div>
+</div> 
+
 ## Demo
 
 Go to https://tiddi.kunalsin9h.com to see a demo of the project.
@@ -15,12 +27,17 @@ Go to https://tiddi.kunalsin9h.com to see a demo of the project.
 
 ## Setup Locally
 
-> If you want to run the server inside a docker container, you can follow these [instructions](https://github.com/kunalsin9h/tiddi/blob/main/Docker.md)
+> [!IMPORTANT]
+> If you want to run the server inside a docker container, you can follow these [Docker Instructions](https://github.com/kunalsin9h/tiddi/blob/main/Docker.md)
+
+> [!IMPORTANT]
+> If you want to run the server using [Meltcd](https://github.com/meltred/meltcd) then you can follow these [Meltcd Instructions](https://github.com/kunalsin9h/tiddi/blob/main/Meltcd.md)
 
 ### Prerequisites
 
 - [Go](https://golang.org/dl/) (latest version recommended)
 - [SQLite](https://www.sqlite.org/download.html) (latest version recommended)
+- [LibSQL](https://github.com/tursodatabase/libsql) An SQLite3 Fork 
 
 ### Steps
 
@@ -48,26 +65,25 @@ go run cmd/main.go
 
 You can set the following environment variables to change the default settings of the server.
 
-| Environment Variable | Default Value       | Description                       |
-| :------------------- | :------------------ | :-------------------------------- |
-| `PORT`               | `5656`              | Port on which the server will run |
-| `DB`                 | `./database/dev.db` | Path to the database file         |
-| `HOST`               | `localhost`         | Host on which the server will run |
+| Environment Variable | Default Value            | Description                       |
+| :------------------- | :----------------------- | :-------------------------------- |
+| `PORT`               | `5656`                   | Port on which the server will run |
+| `DB`                 | `file:./database/dev.db` | URL to the database file          |
+| `HOST`               | `localhost`              | Host on which the server will run |
 
 #### Example
 
 ```bash
 export PORT=8080
-export DB=./database/prod.db
+
+# DB can be sqlite file or libsql url
+export DB=file:./database/prod.db
+# alternatively for libsql
+export DB=libsql://my-db.tarso.io?authToken=autotoken
+
 export HOST=https://tiddi.kunalsin9h.com
 
 go run cmd/main.go
-```
-
-or alternative way is set the environment while running the server
-
-```bash
-PORT=8080 DB=./database/prod.db HOST=https://tiddi.kunalsin9h.com go run dmd/main.go
 ```
 
 > The `HOST` environment variable is used to generate the `unique image id` of the image, it is recommended to set it to the domain name of the server. `HOST` is also used in the sample frontend to fetch the image from the server.

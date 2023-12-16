@@ -6,8 +6,10 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/tursodatabase/libsql-client-go/libsql"
 )
 
 // DATABASE the global connection for database
@@ -23,19 +25,25 @@ func SETUP_DB() {
 	DB := os.Getenv("DB")
 
 	if DB == "" {
-		log.Println("[DB] Using default database ./database/dev.db")
-		DB = "./database/dev.db"
+		log.Println("[DB] Using default database file:./database/dev.db")
+		DB = "file:./database/dev.db"
 		os.Setenv("DB", DB)
+	} else {
+		log.Println("[DB] Using db: ", DB)
 	}
 
-	if _, err := os.Stat(DB); err != nil {
-		log.Printf("[DB] Database file does not exist, creating %s\n", DB)
-		folders := filepath.Dir(DB)
-		os.MkdirAll(folders, os.ModePerm)
-		os.Create(DB)
+	// if db is sqlite
+	if strings.HasPrefix(DB, "file") {
+		dbFile, _ := strings.CutPrefix(DB, "file:")
+		if _, err := os.Stat(dbFile); err != nil {
+			log.Printf("[DB] Database file does not exist, creating %s\n", dbFile)
+			folders := filepath.Dir(dbFile)
+			os.MkdirAll(folders, os.ModePerm)
+			os.Create(dbFile)
+		}
 	}
 
-	db, err := sql.Open("sqlite3", DB)
+	db, err := sql.Open("libsql", DB)
 
 	if err != nil {
 		log.Fatalf("[DB] Unable to open sqlite3 DB (%s): %v", DB, err)
@@ -46,7 +54,7 @@ func SETUP_DB() {
 	/*
 		Creating Images Table if not exist
 	*/
-	DATABASE.Exec(
+	_, err = DATABASE.Exec(
 		`CREATE TABLE IF NOT EXISTS
 		images (
 			id varchar(7) primary key,
@@ -54,6 +62,10 @@ func SETUP_DB() {
 			image blob not null
 		);`,
 	)
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 }
 

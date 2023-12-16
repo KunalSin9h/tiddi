@@ -4,6 +4,7 @@
 
 - [Docker](https://docs.docker.com/get-docker/) (20.10.22 or higher recommended)
 - [Sqlite3](https://www.sqlite.org/download.html) (3.37.2 or higher recommended)
+- [LibSQL](https://github.com/tursodatabase/libsql) An SQLite3 Fork
 
 #### Steps
 
@@ -18,6 +19,7 @@ docker pull ghcr.io/kunalsin9h/tiddi-container:latest
 2. Create a database folder in the root directory
 
 ```bash
+# This is not required if using libsql
 mkdir database
 ```
 
@@ -26,6 +28,7 @@ mkdir database
 3. Create a sqlite3 database file in the database folder
 
 ```bash
+# This is not required if using libsql
 touch database/dev.db
 ```
 
@@ -43,7 +46,7 @@ docker run \
 ### Environment Variables
 
 - `PORT` - Port number on which the server will run (default: `5656`)
-- `DB` - Path to the database file (default: `./database/dev.db`)
+- `DB` - URL to the database file (default: `file:./database/dev.db`)
 - `HOST` - Host name (default: `http://localhost`)
 
 > You can see more info about environment variables in Tiddi: [Here](https://github.com/KunalSin9h/tiddi#environment-variables)
@@ -55,7 +58,9 @@ docker run \
     -d --name tiddi --rm \
     -p 5656:5656 \
     -e PORT=5656 \
-    -e DB=./database/dev.db \
+    -e DB=file:./database/dev.db \
+    # or for libsql
+    # -e DB=libsql://my-db.tarso.io?authToken=autotoken \
     -e HOST=https://tiddi.kunalsin9h.com \
     --mount type=bind,source="$(pwd)"/database/dev.db,target=/tiddi/database/dev.db \
     ghcr.io/kunalsin9h/tiddi-container:latest

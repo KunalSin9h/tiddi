@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link ref="icon" href="https://i.imgur.com/O2uPQ2C.png" type="image/png">
     <title>Tiddi - Upload Image</title>
     <style>
         
@@ -83,7 +84,7 @@
         }
 
         .spin {
-            height: 20px;
+            height: 30px;
             margin: 0 10px;
         }
 
@@ -204,7 +205,7 @@
     <div>
     <p class="data" data-fetchurl="{{ .FetchURL }}"></p>
     <div class="tiddi">
-        <img src="https://tiddi.kunalsin9h.com/CPDWmsx" alt="tiddi logo">
+        <img src="https://i.imgur.com/QMPdWaA.png" alt="tiddi logo">
     </div>
     <div class="upload">
         <div class="upload-area">
@@ -261,7 +262,7 @@
         submit.addEventListener('click', (e) => {
             e.preventDefault()
 
-            showBox("black", "#F0F0F0", "<div class='spinner'><p>Getting URL</p><img class='spin' src='https://tiddi.kunalsin9h.com/n7uV23O' alt='spinner logo'></div>")
+            showBox("black", "#F0F0F0", "<div class='spinner'><p>Getting URL</p><img class='spin' src='https://i.giphy.com/3y0oCOkdKKRi0.webp' alt='spinner logo'></div>")
 
             const reader = new FileReader()
             try {
