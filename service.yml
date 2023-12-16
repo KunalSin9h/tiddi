@@ -8,8 +8,5 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-    environment:
-      PORT: 5656
-      HOST: https://tiddi.kunalsin9h.com
     env_file:
       - ~/secrets/tiddi
