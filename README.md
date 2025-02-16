@@ -1,4 +1,4 @@
-## Tiddy is self hosted [image server](https://en.wikipedia.org/wiki/Image_server) written in Go
+## Tiddy is self hosted [object store](https://en.wikipedia.org/wiki/Object_storage) server written in Go
 
 <div align="center">
   <h3>Powered by</h3>
@@ -14,6 +14,8 @@
   </div>
 </div> 
 
+Supports: all type of files
+
 ## Demo
 
 Go to https://tiddi.kunalsin9h.com to see a demo of the project.
@@ -21,10 +23,10 @@ Go to https://tiddi.kunalsin9h.com to see a demo of the project.
 
 ## Features (API)
 
-- [x] Upload images
-- [x] View images
-- [x] Delete images
-- [x] Update images
+- [x] Upload files
+- [x] View files
+- [x] Delete files
+- [x] Update files
 - [x] Get image details
 
 ## Setup Locally
