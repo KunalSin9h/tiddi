@@ -1,5 +1,3 @@
-## Tiddy is self hosted [object store](https://en.wikipedia.org/wiki/Object_storage) server written in Go
-
 <div align="center">
   <h3>Powered by</h3>
   <div style="display: flex; justify-content: center;">
